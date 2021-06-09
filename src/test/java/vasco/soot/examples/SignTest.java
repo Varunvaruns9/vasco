@@ -27,6 +27,7 @@ import soot.SootMethod;
 import soot.Transform;
 import soot.Unit;
 import vasco.DataFlowSolution;
+import vasco.soot.SignMap;
 import vasco.soot.examples.SignAnalysis.Sign;
 
 /**
@@ -43,7 +44,7 @@ public class SignTest extends SceneTransformer {
 	protected void internalTransform(String arg0, @SuppressWarnings("rawtypes") Map arg1) {
 		analysis = new SignAnalysis();
 		analysis.doAnalysis();
-		DataFlowSolution<Unit,Map<Local,Sign>> solution = analysis.getMeetOverValidPathsSolution();
+		DataFlowSolution<Unit,SignMap> solution = analysis.getMeetOverValidPathsSolution();
 		System.out.println("----------------------------------------------------------------");
 		for (SootMethod sootMethod : analysis.getMethods()) {
 			System.out.println(sootMethod);
@@ -57,7 +58,7 @@ public class SignTest extends SceneTransformer {
 		}		
 	}
 	
-	public static String formatConstants(Map<Local, Sign> value) {
+	public static String formatConstants(SignMap value) {
 		if (value == null) {
 			return "";
 		}

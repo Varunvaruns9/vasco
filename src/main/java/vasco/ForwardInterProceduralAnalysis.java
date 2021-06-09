@@ -57,6 +57,9 @@ public abstract class ForwardInterProceduralAnalysis<M,N,A> extends InterProcedu
 	@Override
 	public void doAnalysis() {
 
+		// Do the pre-analysis to use the parameter map.
+		ParameterAnalysis.doPreAnalysis();
+
 		// Initial contexts
 		for (M method : programRepresentation().getEntryPoints()) {
 			if (programRepresentation().isPhantomMethod(method)) {
